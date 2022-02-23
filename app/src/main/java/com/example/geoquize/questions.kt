@@ -9,15 +9,9 @@ object Game {
 
     fun init(){
         questions.add(Questions("A cube have 12 straight edges.", true))
-        questions.add(Questions("A cube have 12 straight edges.", true))
-        questions.add(Questions("A cube have 12 straight edges.", true))
-        questions.add(Questions("A cube have 12 straight edges.", true))
-        questions.add(Questions("A cube have 12 straight edges.", true))
-        questions.add(Questions("A cube have 12 straight edges.", true))
-        questions.add(Questions("A cube have 12 straight edges.", true))
-        questions.add(Questions("A cube have 12 straight edges.", true))
-        questions.add(Questions("A cube have 12 straight edges.", true))
-        questions.add(Questions("A cube have 12 straight edges.", true))
+        questions.add(Questions("Katherine Hepburn is the actress has won the most Oscars.", true))
+        questions.add(Questions("Seven players are there in an ice hockey team.", false))
+        questions.add(Questions("Milk Mekhela also known as the Milky Way  is the name of our galaxy.", true))
     }
 }
 
