@@ -15,6 +15,7 @@ class MainActivity2 : AppCompatActivity() {
     private var i = 0
     var currentAnswer: Boolean = true
     private var isAnsweredList  = arrayListOf<String?>(null, null, null, null)
+    private var isCheatedList  = arrayListOf<String?>(null, null, null, null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,10 @@ class MainActivity2 : AppCompatActivity() {
     private fun onClicked(view: View) {
         val intent = Intent(this, areYouSure::class.java)
         intent.putExtra("question", Game.questions[0])
+        intent.putExtra("number", i)
         startActivity(intent)
+        var cheet = this.intent.getStringExtra("cheet")
+        isCheatedList[i] = cheet
     }
 
     private fun checkTruth(view: View) {
@@ -60,13 +64,17 @@ class MainActivity2 : AppCompatActivity() {
         currentQuestion = Game.questions[i]
         binding.textView3.text = currentQuestion.question
         currentAnswer = currentQuestion.boolean
-        if (isAnsweredList[i] != null) {
-            binding.t.isEnabled = false
-            binding.f.isEnabled = false
+        if (isCheatedList[i] == null) {
+            if (isAnsweredList[i] != null) {
+                binding.t.isEnabled = false
+                binding.f.isEnabled = false
+            } else {
+                binding.t.isEnabled = true
+                binding.f.isEnabled = true
+            }
         }
         else{
-            binding.t.isEnabled = true
-            binding.f.isEnabled = true
+            Toast.makeText(this, "cheated!", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -79,15 +87,18 @@ class MainActivity2 : AppCompatActivity() {
             currentQuestion = Game.questions[i]
             binding.textView3.text = currentQuestion.question
             currentAnswer = currentQuestion.boolean
-            if (isAnsweredList[i] != null) {
-                binding.t.isEnabled = false
-                binding.f.isEnabled = false
+            if (isCheatedList[i] == null) {
+                if (isAnsweredList[i] != null) {
+                    binding.t.isEnabled = false
+                    binding.f.isEnabled = false
+                } else {
+                    binding.t.isEnabled = true
+                    binding.f.isEnabled = true
+                }
             }
             else{
-                binding.t.isEnabled = true
-                binding.f.isEnabled = true
+                Toast.makeText(this, "cheated!", Toast.LENGTH_SHORT).show()
             }
-
         }
     }
 
