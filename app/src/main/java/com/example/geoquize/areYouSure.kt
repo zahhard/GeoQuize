@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.geoquize.databinding.ActivityAreYouSureBinding
-import com.example.geoquize.databinding.ActivityMainBinding
 
 class areYouSure : AppCompatActivity() {
     lateinit var binding : ActivityAreYouSureBinding
@@ -14,12 +13,13 @@ class areYouSure : AppCompatActivity() {
         binding = ActivityAreYouSureBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.button.setOnClickListener(::onClicked)
     }
 
-    fun ocClicked(view: View){
-        val question = Questions
-        question.init()
-        binding.textView.text = question.mapQuestions["A cube have 12 straight edges."].toString()
+    fun onClicked(view: View){
+        val question = this.intent.getParcelableExtra<Questions>("question")
+        binding.question.text = question?.question.toString()
+        binding.answer.text = question?.boolean.toString()
 
     }
 

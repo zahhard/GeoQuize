@@ -1,5 +1,6 @@
 package com.example.geoquize
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,9 +14,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.button2.setOnClickListener(::onClicked)
     }
 
-    fun ocClicked(view: View) {
-        
+    fun onClicked(view: View) {
+        val intent = Intent(this, MainActivity2::class.java)
+        startActivity(intent)
     }
 }

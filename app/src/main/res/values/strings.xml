@@ -4,4 +4,9 @@
     <string name="btn_sure">show answer</string>
     <string name="start_text">If You are ready click to start</string>
     <string name="start">Start</string>
+    <string name="cheat">cheat!</string>
+    <string name="next">next</string>
+    <string name="prev">prev</string>
+    <string name="truee">true</string>
+    <string name="falsee">false</string>
 </resources>
