@@ -1,4 +1,4 @@
-# GeoQuize
+# GeoQuiz
 
 _**Zahhard**_
 
