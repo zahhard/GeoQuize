@@ -11,6 +11,7 @@
         android:theme="@style/Theme.GeoQuize">
         <activity
             android:name=".MainActivity2"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:exported="false" />
         <activity
             android:name=".areYouSure"
