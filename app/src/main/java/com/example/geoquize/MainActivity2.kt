@@ -24,7 +24,7 @@ class MainActivity2 : AppCompatActivity() {
         Game.init()
 
         binding.prev.isEnabled = false
-        currentQuestion = Game.questions[0]
+        currentQuestion = Game.questions[i]
         currentAnswer = currentQuestion.boolean
         binding.textView3.text = currentQuestion.question
 
@@ -39,20 +39,23 @@ class MainActivity2 : AppCompatActivity() {
     private fun onClicked(view: View) {
         val intent = Intent(this, areYouSure::class.java)
         intent.putExtra("question", Game.questions[i])
-        intent.putExtra("number", i)
         startActivity(intent)
-        var cheet = this.intent.getStringExtra("cheet")
-        isCheatedList[i] = cheet
+        val cheet = this.intent.getStringExtra("cheet")
+        isCheatedList[i] = cheet.toString()
     }
 
     private fun checkTruth(view: View) {
         if (view is Button) {
-            if (currentAnswer.toString() == view.text) {
-                Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show()
-                isAnsweredList[i] = ("view.text.toString()")
-            } else
-                Toast.makeText(this, "NOT correct!", Toast.LENGTH_SHORT).show()
-            isAnsweredList[i] = ("view.text.toString()")
+            isAnsweredList[i] = ("answered")
+            if (isCheatedList[i] == null) {
+                if (currentAnswer.toString() == view.text ) {
+                    Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show()
+                } else
+                    Toast.makeText(this, "NOT correct!", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(this, "cheated!", Toast.LENGTH_SHORT).show()
+            }
         }
         binding.t.isEnabled = false
         binding.f.isEnabled = false
@@ -79,6 +82,8 @@ class MainActivity2 : AppCompatActivity() {
                 }
             } else {
                 Toast.makeText(this, "cheated!", Toast.LENGTH_SHORT).show()
+                binding.t.isEnabled = true
+                binding.f.isEnabled = true
             }
         }
     }
@@ -102,6 +107,8 @@ class MainActivity2 : AppCompatActivity() {
                 }
             } else {
                 Toast.makeText(this, "cheated!", Toast.LENGTH_SHORT).show()
+                binding.t.isEnabled = true
+                binding.f.isEnabled = true
             }
         }
     }

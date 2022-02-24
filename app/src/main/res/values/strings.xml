@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">GeoQuize</string>
-    <string name="tv_sure">Are you soure to do this?</string>
+    <string name="app_name">GeoQuiz</string>
+    <string name="tv_sure">Are you sure to do this?</string>
     <string name="btn_sure">show answer</string>
     <string name="start_text">If You are ready click to start</string>
     <string name="start">Start</string>

@@ -4,9 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.example.geoquize.databinding.ActivityAreYouSureBinding
 
-private var isCheatedList  = arrayListOf<String?>(null, null, null, null)
 class areYouSure : AppCompatActivity() {
     lateinit var binding : ActivityAreYouSureBinding
 
@@ -20,11 +20,11 @@ class areYouSure : AppCompatActivity() {
 
     fun onClicked(view: View){
         val question = this.intent.getParcelableExtra<Questions>("question")
-        val num = this.intent.getIntExtra("number", 0)
         binding.question.text = question?.question.toString()
         binding.answer.text = question?.boolean.toString()
-        isCheatedList[num] = "Cheeted!"
-        val intent = Intent(this, areYouSure::class.java)
-        intent.putExtra("cheet", "cheeted")
+
+        val intent = Intent(this, MainActivity2::class.java)
+        intent.putExtra("cheet", question?.boolean)
+        Toast.makeText(this, "aaaaaaaaaa", Toast.LENGTH_SHORT).show()
     }
 }
