@@ -14,8 +14,8 @@ class MainActivity2 : AppCompatActivity() {
     lateinit var currentQuestion: Questions
     private var i = 0
     var currentAnswer: Boolean = true
-    private var isAnsweredList  = arrayListOf<String?>(null, null, null, null)
-    private var isCheatedList  = arrayListOf<String?>(null, null, null, null)
+    private var isAnsweredList = arrayListOf<String?>(null, null, null, null)
+    private var isCheatedList = arrayListOf<String?>(null, null, null, null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +38,7 @@ class MainActivity2 : AppCompatActivity() {
 
     private fun onClicked(view: View) {
         val intent = Intent(this, areYouSure::class.java)
-        intent.putExtra("question", Game.questions[0])
+        intent.putExtra("question", Game.questions[i])
         intent.putExtra("number", i)
         startActivity(intent)
         var cheet = this.intent.getStringExtra("cheet")
@@ -49,10 +49,10 @@ class MainActivity2 : AppCompatActivity() {
         if (view is Button) {
             if (currentAnswer.toString() == view.text) {
                 Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show()
-                isAnsweredList[i] = ( "view.text.toString()" )
+                isAnsweredList[i] = ("view.text.toString()")
             } else
                 Toast.makeText(this, "NOT correct!", Toast.LENGTH_SHORT).show()
-            isAnsweredList[i] = ( "view.text.toString()" )
+            isAnsweredList[i] = ("view.text.toString()")
         }
         binding.t.isEnabled = false
         binding.f.isEnabled = false
@@ -60,21 +60,26 @@ class MainActivity2 : AppCompatActivity() {
 
     private fun prev(view: View) {
         i--
-        binding.prev.isEnabled = true
-        currentQuestion = Game.questions[i]
-        binding.textView3.text = currentQuestion.question
-        currentAnswer = currentQuestion.boolean
-        if (isCheatedList[i] == null) {
-            if (isAnsweredList[i] != null) {
-                binding.t.isEnabled = false
-                binding.f.isEnabled = false
-            } else {
-                binding.t.isEnabled = true
-                binding.f.isEnabled = true
-            }
+        if (currentQuestion == Game.questions[0]){
+            binding.prev.isEnabled = false
+            binding.next.isEnabled = true
         }
-        else{
-            Toast.makeText(this, "cheated!", Toast.LENGTH_SHORT).show()
+        else {
+            binding.prev.isEnabled = true
+            currentQuestion = Game.questions[i]
+            binding.textView3.text = currentQuestion.question
+            currentAnswer = currentQuestion.boolean
+            if (isCheatedList[i] == null) {
+                if (isAnsweredList[i] != null) {
+                    binding.t.isEnabled = false
+                    binding.f.isEnabled = false
+                } else {
+                    binding.t.isEnabled = true
+                    binding.f.isEnabled = true
+                }
+            } else {
+                Toast.makeText(this, "cheated!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -95,8 +100,7 @@ class MainActivity2 : AppCompatActivity() {
                     binding.t.isEnabled = true
                     binding.f.isEnabled = true
                 }
-            }
-            else{
+            } else {
                 Toast.makeText(this, "cheated!", Toast.LENGTH_SHORT).show()
             }
         }

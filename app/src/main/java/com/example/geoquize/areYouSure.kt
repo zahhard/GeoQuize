@@ -27,6 +27,4 @@ class areYouSure : AppCompatActivity() {
         val intent = Intent(this, areYouSure::class.java)
         intent.putExtra("cheet", "cheeted")
     }
-
-
 }
