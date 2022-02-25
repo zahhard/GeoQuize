@@ -12,8 +12,8 @@ class MainActivity2 : AppCompatActivity() {
 
     lateinit var binding: ActivityMain2Binding
     lateinit var currentQuestion: Questions
-    private var i = 0
     var currentAnswer: Boolean = true
+    private var i = 0
     private var isAnsweredList = arrayListOf<String?>(null, null, null, null)
     private var isCheatedList = arrayListOf<String?>(null, null, null, null)
 
@@ -23,18 +23,30 @@ class MainActivity2 : AppCompatActivity() {
         setContentView(binding.root)
         Game.init()
 
+        firstThings()
+        added()
+    }
+
+    //**********************************************************************************************
+
+    private fun firstThings() {
         binding.prev.isEnabled = false
         currentQuestion = Game.questions[i]
         currentAnswer = currentQuestion.boolean
         binding.textView3.text = currentQuestion.question
+    }
 
+    //**********************************************************************************************
 
+    private fun added() {
         binding.btnCheat.setOnClickListener(::onClicked)
         binding.t.setOnClickListener(::checkTruth)
         binding.f.setOnClickListener(::checkTruth)
         binding.prev.setOnClickListener(::prev)
         binding.next.setOnClickListener(::next)
     }
+
+    //**********************************************************************************************
 
     private fun onClicked(view: View) {
         val intent = Intent(this, areYouSure::class.java)
@@ -43,6 +55,8 @@ class MainActivity2 : AppCompatActivity() {
         val cheet = this.intent.getStringExtra("cheet")
         isCheatedList[i] = cheet.toString()
     }
+
+    //**********************************************************************************************
 
     private fun checkTruth(view: View) {
         if (view is Button) {
@@ -61,8 +75,11 @@ class MainActivity2 : AppCompatActivity() {
         binding.f.isEnabled = false
     }
 
+    //**********************************************************************************************
+
     private fun prev(view: View) {
         i--
+        binding.next.isEnabled = true
         if (currentQuestion == Game.questions[0]){
             binding.prev.isEnabled = false
             binding.next.isEnabled = true
@@ -87,6 +104,8 @@ class MainActivity2 : AppCompatActivity() {
             }
         }
     }
+
+    //**********************************************************************************************
 
     private fun next(view: View) {
         i++

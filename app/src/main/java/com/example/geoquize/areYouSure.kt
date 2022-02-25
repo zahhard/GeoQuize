@@ -25,6 +25,6 @@ class areYouSure : AppCompatActivity() {
 
         val intent = Intent(this, MainActivity2::class.java)
         intent.putExtra("cheet", question?.boolean)
-        Toast.makeText(this, "aaaaaaaaaa", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "ceated!!!!", Toast.LENGTH_SHORT).show()
     }
 }
